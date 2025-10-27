@@ -1,0 +1,453 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* KNP Brand Colors - Professionally Elegant Palette */
+    --background: 0 0% 96%;
+    --foreground: 0 0% 10%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 10%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 10%;
+
+    /* Deep Indigo - Primary Brand Color */
+    --primary: 228 60% 30%;
+    --primary-foreground: 0 0% 96%;
+    
+    /* Muted Gold - Accent Color */
+    --accent: 43 59% 52%;
+    --accent-foreground: 0 0% 10%;
+
+    --secondary: 0 0% 96%;
+    --secondary-foreground: 228 60% 30%;
+
+    --muted: 0 0% 94%;
+    --muted-foreground: 0 0% 35%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 0 0% 88%;
+    --input: 0 0% 88%;
+    --ring: 43 59% 52%;
+
+    --radius: 0.25rem;
+    
+    /* Corporate Design Tokens */
+    --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-subtle: all 0.3s ease;
+    --shadow-subtle: 0 1px 3px rgba(0, 0, 0, 0.04);
+    --shadow-medium: 0 2px 8px rgba(0, 0, 0, 0.06);
+    --shadow-large: 0 4px 16px rgba(0, 0, 0, 0.08);
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 228 47% 12%;
+    --foreground: 0 0% 93%;
+
+    --card: 228 47% 15%;
+    --card-foreground: 0 0% 93%;
+
+    --popover: 228 47% 15%;
+    --popover-foreground: 0 0% 93%;
+
+    --primary: 0 0% 98%;
+    --primary-foreground: 228 47% 20%;
+
+    --secondary: 228 30% 18%;
+    --secondary-foreground: 0 0% 93%;
+
+    --muted: 228 30% 18%;
+    --muted-foreground: 0 0% 65%;
+
+    --accent: 35 25% 50%;
+    --accent-foreground: 0 0% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 228 30% 22%;
+    --input: 228 30% 22%;
+    --ring: 35 25% 50%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-white text-black font-poppins antialiased font-light;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-poppins font-light tracking-tight text-black;
+  }
+  
+  p {
+    @apply font-light leading-relaxed text-black;
+  }
+}
+
+/* Custom utilities for KNP brand */
+@layer utilities {
+  .text-corporate {
+    @apply text-muted-foreground text-sm;
+  }
+  
+  .accent-border {
+    @apply border-l-2 border-accent;
+  }
+  
+  .hover-lift {
+    @apply transition-all duration-500 hover:transform hover:-translate-y-0.5 hover:shadow-md;
+  }
+  
+  .fade-in {
+    animation: fadeIn 1s ease-in;
+  }
+  
+  .slide-up {
+    animation: slideUp 1.2s ease-out;
+  }
+  
+  .minimal-button {
+    @apply inline-flex items-center justify-center px-6 py-2 text-sm font-light border border-primary/20 rounded-sm bg-transparent;
+    transition: all 0.4s ease-out;
+  }
+  
+  .minimal-button:hover {
+    @apply border-accent text-accent;
+  }
+
+  .image-hover-zoom {
+    @apply overflow-hidden rounded-sm;
+  }
+
+  .image-hover-zoom img {
+    @apply transition-transform duration-700 ease-out w-full h-full object-cover filter grayscale;
+  }
+
+  .image-hover-zoom:hover img {
+    @apply scale-105 grayscale-0;
+  }
+
+  .grayscale-image {
+    @apply filter grayscale transition-all duration-500 ease-out;
+  }
+
+  .grayscale-image:hover {
+    @apply grayscale-0;
+  }
+
+  .reveal-on-scroll {
+    @apply opacity-0;
+  }
+
+  .reveal-on-scroll.revealed {
+    @apply animate-fadeInUp;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes lineReveal {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes sliderPopup {
+  from {
+    opacity: 0;
+    transform: scale(0.8) translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes sliderSmoothGlide {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes scaleSlideIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* Image Reveal Animations */
+@keyframes imageReveal {
+  from {
+    opacity: 0;
+    clip-path: inset(0 100% 0 0);
+  }
+  to {
+    opacity: 1;
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+@keyframes imageZoomIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Parallax and Scroll Animations */
+@keyframes parallaxFloat {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+@keyframes countUp {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes expandWidth {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+/* Scroll Stick and Slide Animations */
+@keyframes stickSlide {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInFromRight {
+  0% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInFromLeft {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInFromTop {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInFromBottom {
+  0% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes scaleRotateIn {
+  0% {
+    transform: scale(0) rotate(-180deg);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
+}
+
+@keyframes floatUpDown {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes glow {
+  0%, 100% {
+    box-shadow: 0 0 5px rgba(var(--accent), 0.5);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(var(--accent), 0.8);
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes wave {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes flip {
+  0% {
+    transform: rotateY(0deg);
+  }
+  100% {
+    transform: rotateY(360deg);
+  }
+}
